@@ -39,3 +39,21 @@ class Solution:
 
     return ans
 
+
+# Second soluion:
+class Solution(object):
+    def longestOnes(self, nums, k):
+      l = max_consequence = 0
+
+      for r, num in enumerate(nums):
+        k -= 1 - num
+
+        if k < 0:
+          k += 1 - nums[l]
+          l += 1
+        else:
+            max_consequence = max(max_consequence, r-l +1)
+      return max_consequence
+  
+ 
+
