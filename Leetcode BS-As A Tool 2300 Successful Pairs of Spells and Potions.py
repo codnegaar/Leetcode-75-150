@@ -48,3 +48,4 @@ class Solution:
       return l
 
     return [len(potions) - firstIndexSuccess(spell) for spell in spells]
+          
