@@ -50,4 +50,17 @@ class Solution:
       return l
 
     return [len(potions) - firstIndexSuccess(spell) for spell in spells]
-          
+
+
+# Second solution
+
+class Solution:
+    def successfulPairs(self, spells, potions, success):
+        sorted_potions = sorted(potions)
+        result = []
+        for a in spells:
+            count = len(sorted_potions) - bisect_left(sorted_potions, (success + a - 1) // a)
+            result.append(count)
+        return result
+
+
