@@ -1,5 +1,5 @@
 '''
-724 Find Pivot Index
+Leetcode 75-Prefix Sum 724 Find Pivot Index
 
 Given an array of integers nums, calculate the pivot index of this array.
 The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
@@ -18,7 +18,7 @@ Example 2:
         Input: nums = [1,2,3]
         Output: -1
         Explanation:
-        There is no index that satisfies the conditions in the problem statement.
+        No index satisfies the conditions in the problem statement.
         
 Example 3:
         Input: nums = [2,1,-1]
@@ -46,7 +46,7 @@ Constraints:
 
     return -1
 
-'''
+
 # Second solution
 
 class Solution:
@@ -59,6 +59,20 @@ class Solution:
             temp += nums[i]
         return -1
 
-'''
- 
+ # Third Solution
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
+class Solution(object):
+    def pivotIndex(self, nums):
+        # Initialize leftSum & rightSum to store the sum of all the numbers strictly to the index's left & right respectively...
+        leftSum, rightSum = 0, sum(nums)
+        # Traverse elements through the loop...
+        for idx, ele in enumerate(nums):
+            rightSum -= ele
+            # If the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right...
+            if leftSum == rightSum:
+                return idx      # Return the pivot index...
+            leftSum += ele
+        return -1       # If there is no index that satisfies the conditions in the problem statement...
  
