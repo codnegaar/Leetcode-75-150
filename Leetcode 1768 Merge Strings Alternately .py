@@ -1,5 +1,6 @@
 '''
-1768 Merge Strings Alternately 
+Leetcode (Array-String) 1768 Merge Strings Alternately 
+
 You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other,
 append the additional letters onto the end of the merged string. Return the merged string.
 
@@ -42,3 +43,39 @@ class Solution:
     '''
 
     return ''.join(a + b for a, b in zip_longest(word1, word2, fillvalue=''))
+
+
+# Second solution
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        """
+        Merge two strings alternately, taking one character from each string at a time.
+        When one string runs out of characters, append the remaining characters of the other string.
+        
+        Parameters:
+        word1 (str): The first input string.
+        word2 (str): The second input string.
+        
+        Returns:
+        str: The merged string, with characters taken alternately from word1 and word2.
+        
+        Time Complexity: O(n), where n = len(word1) + len(word2).
+        """
+
+        # Initialize pointers for both strings and an empty list for the result
+        a, b = 0, 0
+        merged = []
+
+        # Alternate appending characters from each string until one is exhausted
+        while a < len(word1) and b < len(word2):
+            merged.append(word1[a])
+            a += 1
+            merged.append(word2[b])
+            b += 1
+
+        # Append any remaining characters from word1 or word2
+        merged.extend(word1[a:])
+        merged.extend(word2[b:])
+
+        # Join the list into a single string and return it
+        return ''.join(merged)
