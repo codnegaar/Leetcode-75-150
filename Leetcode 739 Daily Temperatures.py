@@ -35,3 +35,6 @@ class Solution:
       stack.append(i)
 
     return ans
+
+# Second solution
+# Calculate the number of days to wait for a warmer temperature
