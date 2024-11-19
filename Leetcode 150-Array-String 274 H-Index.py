@@ -49,4 +49,47 @@ class Solution:
                 h = i+1        
         return h
 
+# Second solution
+
+from typing import List
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        """
+        Evaluates the value of an arithmetic expression in Reverse Polish Notation (RPN).
+
+        Args:
+        tokens (List[str]): A list of tokens representing the RPN expression.
+
+        Returns:
+        int: The evaluated result of the RPN expression.
+
+        Supported operations are '+', '-', '*', and '/'.
+        """
+        stack = []
+
+        for token in tokens:
+            if token in {"+", "-", "*", "/"}:
+                b = stack.pop()
+                a = stack.pop()
+
+                if token == "+":
+                    stack.append(a + b)
+                elif token == "-":
+                    stack.append(a - b)
+                elif token == "*":
+                    stack.append(a * b)
+                elif token == "/":
+                    stack.append(int(a / b))
+            else:
+                stack.append(int(token))
+
+        return stack[0]
+
+# Example usage
+if __name__ == "__main__":
+    solution = Solution()
+    param_1 = ["2", "1", "+", "3", "*"]  # Sample input for RPN
+    ret = solution.evalRPN(param_1)
+    print(ret)  # Expected output: 9
 
