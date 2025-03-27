@@ -44,3 +44,50 @@ class Solution:
             else max(dp[i][j + 1], dp[i + 1][j])
 
     return dp[m][n]
+
+
+# Second Solution
+from typing import List
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        """
+        Calculates the length of the Longest Common Subsequence (LCS)
+        between two input strings using dynamic programming with O(n) space.
+
+        Parameters:
+        text1 (str): First input string.
+        text2 (str): Second input string.
+
+        Returns:
+        int: Length of the longest common subsequence between text1 and text2.
+        """
+        m, n = len(text1), len(text2)
+
+        # Ensure text1 is the shorter string to optimize space usage
+        if m < n:
+            text1, text2 = text2, text1
+            m, n = n, m
+
+        # prev: DP row for previous text1 character
+        # curr: DP row for current text1 character
+        prev = [0] * (n + 1)
+
+        for i in range(1, m + 1):
+            curr = [0] * (n + 1)
+            for j in range(1, n + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    curr[j] = 1 + prev[j - 1]
+                else:
+                    curr[j] = max(prev[j], curr[j - 1])
+            prev = curr  # Move current row to previous for next iteration
+
+        return prev[n]
+
+# Example usage
+if __name__ == "__main__":
+    sol = Solution()
+    t1 = "abcde"
+    t2 = "ace"
+    print(f"LCS length between '{t1}' and '{t2}':", sol.longestCommonSubsequence(t1, t2))
+    # Output: 3 (LCS = "ace")
