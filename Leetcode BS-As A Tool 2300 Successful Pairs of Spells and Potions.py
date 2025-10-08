@@ -2,7 +2,6 @@
 
 2300 Successful Pairs of Spells and Potions
 
-
 You are given two positive integer arrays of spells and potions, of length n and m respectively, where spells[i] represent the strength of the
 ith spell and potions[j] represent the strength of the jth potion.
 You are also given an integer success. A spell and potion pair is considered successful if the product of their strengths is at least successful.
